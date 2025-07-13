@@ -1,8 +1,9 @@
 {
-  "name": "",
+  "name": "reddom",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "start": "node ./dist/server/entry.mjs",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
