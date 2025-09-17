@@ -1,0 +1,43 @@
+:root {
+	/* Colors */
+	--background-200: hsl(220, 10%, 15%);
+	--background-300: hsl(220, 10%, 10%);
+	--background-400: hsl(220, 10%, 5%);
+	--background-500: hsl(220, 10%, 2%);
+
+	--primary-300: hsl(145, 100%, 95%);
+	--primary-400: hsl(145, 100%, 91%);
+	--primary-500: hsl(145, 100%, 80%);
+
+	--secondary-400: hsl(160, 38%, 74%);
+	--secondary-500: hsl(160, 38%, 50%);
+
+	--accent: hsl(0, 0%, 95%);
+
+	--text-300: var(--accent);
+	--text-400: hsl(0, 0%, 80%);
+	--text-500: hsl(0, 0%, 60%);
+	--text-900: var(--background-500);
+
+	--border-300: var(--accent);
+	--border-400: var(--text-400);
+	--border-500: var(--text-500);
+	--border-900: var(--background-500);
+
+	/* Sizes */
+	--navbar-height: 64px;
+	--sidebar-width: 300px;
+
+	/* Spacing */
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	color: var(--text-400);
+	font-family: sans-serif, system-ui, -apple-system;
+}
+
+body {
+	background-color: var(--background-400);
+}

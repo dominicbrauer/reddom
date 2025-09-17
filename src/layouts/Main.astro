@@ -1,0 +1,35 @@
+---
+import NavBar from "@/components/main/NavBar.astro";
+import SideBar from "@/components/main/SideBar.astro";
+import "@/styles/global.css";
+import "@/styles/sizing.css";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Reddom</title>
+	</head>
+	<body>
+		<NavBar />
+		<SideBar />
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>
+
+<style>
+	main {
+		padding-left: calc(var(--sidebar-width) + var(--size-xl));
+		padding-top: calc(var(--navbar-height) + var(--size-xl));
+		padding:
+			calc(var(--navbar-height) + var(--size-xl))
+			var(--size-xl)
+			calc(2 * var(--size-xl))
+			calc(var(--sidebar-width) + var(--size-xl));
+	}
+</style>
