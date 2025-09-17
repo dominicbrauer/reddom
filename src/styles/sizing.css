@@ -1,5 +1,6 @@
 :root {
-	/* Taken from `liftkitvars.css` - https://www.chainlift.io/utility-classes/liftkitvars */
+	/* Taken from `liftkitvars.css`
+	- https://www.chainlift.io/utility-classes/liftkitvars */
 
 	--golden-ratio: 1.618;
 	--sizing-wholestep: 1.618;
@@ -24,7 +25,7 @@
 	--size-3xl: calc(var(--size-2xl) * var(--golden-ratio));
 	--size-4xl: calc(var(--size-3xl) * var(--golden-ratio));
 
-	/* Unitless sizes for usage of `calc()` */
+	/* Unitless sizes for usage with `calc()` */
 
 	--size-s-unitless: calc(1 / var(--golden-ratio));
 	--size-xs-unitless: calc(var(--size-s-unitless) / var(--golden-ratio));

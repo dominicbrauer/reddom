@@ -1,0 +1,18 @@
+---
+import type { GetStaticPaths } from "astro";
+import Main from "@/layouts/Main.astro";
+
+export const getStaticPaths = (() => {
+	return [
+		{ params: { block: "repeater" }},
+		{ params: { block: "piston" }},
+		{ params: { block: "crafter" }}
+	];
+}) satisfies GetStaticPaths;
+
+const { block } = Astro.params;
+---
+
+<Main>
+	<span>Hello, this is a {block}.</span>
+</Main>

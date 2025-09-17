@@ -22,13 +22,12 @@
 	--border-300: var(--accent);
 	--border-400: var(--text-400);
 	--border-500: var(--text-500);
+	--border-600: var(--background-400);
 	--border-900: var(--background-500);
 
 	/* Sizes */
 	--navbar-height: 64px;
 	--sidebar-width: 300px;
-
-	/* Spacing */
 }
 
 * {
