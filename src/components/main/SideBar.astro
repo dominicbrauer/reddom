@@ -1,9 +1,27 @@
 ---
+import AssetsIcon from "@/assets/icons/sidebar/assets.svg"
+import { db, Block } from "astro:db"
 
+const data = await db.select().from(Block);
+
+const sections = [
+	{
+		title: "Assets",
+		href: "assets",
+		icon: AssetsIcon
+	}
+];
 ---
 
-<div class="sidebar">
-	<span>hello</span>
+<div class="sidebar cflex">
+	<div class="sections-wrapper cflex">
+		{sections.map((section) => (
+			<a class="section-link rflex" href={section.href}>
+				<section.icon />
+				<span>{section.title}</span>
+			</a>
+		))}
+	</div>
 </div>
 
 <style>
@@ -11,10 +29,40 @@
 		position: fixed;
 		inset: var(--navbar-height) auto auto 0;
 		height: 100%;
-		min-width: var(--sidebar-width);
+		width: var(--sidebar-width);
 		max-width: var(--sidebar-width);
-		background-color: var(--background-300);
-		border-top: 1px solid var(--border-900);
-		border-right: 1px solid var(--border-900);
+		background-color: var(--bg);
+		border-top: 1px solid var(--bg-dark);
+		padding: var(--size-l);
+	}
+
+	.sections-wrapper {
+		border: 1px solid var(--border-500);
+	}
+
+	.section-link {
+		align-items: center;
+		text-decoration: none;
+		gap: var(--size-xs);
+		background-color: var(--bg-light);
+	}
+
+	.section-link:hover {
+		background-color: var(--bg-light);
+	}
+
+	.section-link > svg {
+		aspect-ratio: 1 / 1;
+		width: var(--size-m);
+		height: auto;
+		margin: var(--size-s);
+	}
+
+	.section-link:hover > svg {
+		stroke: var(--text);
+	}
+
+	.section-link:hover > span {
+		color: var(--text);
 	}
 </style>
