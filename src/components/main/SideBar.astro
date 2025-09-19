@@ -1,27 +1,45 @@
 ---
-import AssetsIcon from "@/assets/icons/sidebar/assets.svg"
+import PicturesIcon from "@/assets/icons/pictures.svg";
+import BoxIcon from "@/assets/icons/box.svg";
+import WrenchIcon from "@/assets/icons/wrench.svg";
+import PickaxeIcon from "@/assets/icons/pickaxe.svg";
 import { db, Block } from "astro:db"
 
 const data = await db.select().from(Block);
 
-const sections = [
+const tabs = [
+	{
+		title: "Start",
+		path: "/getting-started",
+		icon: PickaxeIcon
+	},
+	{
+		title: "Block Reference",
+		path: "/reference",
+		icon: BoxIcon
+	},
+	{
+		title: "Technology",
+		path: "/tech",
+		icon: WrenchIcon
+	},
 	{
 		title: "Assets",
-		href: "assets",
-		icon: AssetsIcon
+		path: "/assets",
+		icon: PicturesIcon
 	}
 ];
 ---
 
 <div class="sidebar cflex">
-	<div class="sections-wrapper cflex">
-		{sections.map((section) => (
-			<a class="section-link rflex" href={section.href}>
-				<section.icon />
-				<span>{section.title}</span>
-			</a>
+	<ul class="tabs-wrapper cflex">
+		{tabs.map((tab) => (
+			<li class="tab-item rflex" data-path={tab.path}>
+				<tab.icon />
+				<span>{tab.title}</span>
+			</li>
 		))}
-	</div>
+	</ul>
 </div>
 
 <style>
@@ -33,36 +51,65 @@ const sections = [
 		max-width: var(--sidebar-width);
 		background-color: var(--bg);
 		border-top: 1px solid var(--bg-dark);
-		padding: var(--size-l);
+		padding: var(--size-m);
 	}
 
-	.sections-wrapper {
-		border: 1px solid var(--border-500);
+	.tabs-wrapper {
+		border: 1px solid var(--border);
+		padding: var(--size-xs);
+		border-radius: calc(var(--br-soft) + var(--size-xs));
+		list-style-type: none;
 	}
 
-	.section-link {
+	.tab-item {
 		align-items: center;
-		text-decoration: none;
 		gap: var(--size-xs);
+		border-radius: var(--br-soft);
+		cursor: pointer;
+	}
+
+	.tab-item.selected {
 		background-color: var(--bg-light);
 	}
 
-	.section-link:hover {
-		background-color: var(--bg-light);
+	.tab-item.selected svg {
+		stroke: var(--primary);
 	}
 
-	.section-link > svg {
+	.tab-item.selected span {
+		color: var(--text);
+	}
+
+	.tab-item svg {
 		aspect-ratio: 1 / 1;
 		width: var(--size-m);
 		height: auto;
 		margin: var(--size-s);
 	}
 
-	.section-link:hover > svg {
+	.tab-item:hover {
+		background-color: var(--bg-light);
+	}
+
+	.tab-item:not(.selected):hover svg {
 		stroke: var(--text);
 	}
 
-	.section-link:hover > span {
+	.tab-item:hover span {
 		color: var(--text);
 	}
 </style>
+
+<script>
+	const tabItems = document.querySelectorAll<HTMLDataListElement>('.tab-item');
+
+	tabItems.forEach((tabItem, index) => {
+		if (document.location.pathname.startsWith(tabItem.dataset.path!)) {
+			tabItem.classList.add('selected');
+		}
+
+		tabItem.addEventListener('click', () => {
+
+		});
+	});
+</script>

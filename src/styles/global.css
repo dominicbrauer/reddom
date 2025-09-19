@@ -4,8 +4,8 @@
 	--bg: oklch(20% 1% 210);
 	--bg-dark: oklch(15% 1% 210);
 
-	--primary: oklch(95% 20% 160);
-	--secondary: oklch(80% 20% 175);
+	--primary: oklch(95% 60% 160);
+	--secondary: oklch(70% 30% 180);
 
 	--text: oklch(95% 1% 210);
 	--text-muted: oklch(75% 1% 210);
@@ -18,8 +18,8 @@
 
 	--highlight: oklch(60% 1% 210);
 
-	--br-soft: .5em;
-	--br-hard: 1em;
+	--br-soft: .25em;
+	--br-hard: .5em;
 
 	--danger: oklch(60% 50% 30);
 	--warning: oklch(85% 50% 85);
