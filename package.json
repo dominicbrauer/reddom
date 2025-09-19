@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./dist/server/entry.mjs",
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build --remote",
     "preview": "astro preview",
     "astro": "astro"
   },
