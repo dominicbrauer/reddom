@@ -5,12 +5,11 @@
   "scripts": {
     "start": "node ./dist/server/entry.mjs",
     "dev": "astro dev",
-    "build": "astro build --remote",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/db": "^0.18.0",
     "@astrojs/node": "^9.4.3",
     "astro": "^5.13.7"
   },
