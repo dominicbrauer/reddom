@@ -16,7 +16,7 @@
 	--gradient: linear-gradient(0deg, var(--bg-dark) 60%, var(--bg));
 	--gradient-hover: ;
 
-	--highlight: oklch(60% 1% 210);
+	--highlight: oklch(85% 1% 210);
 
 	--br-soft: .25em;
 	--br-hard: .5em;

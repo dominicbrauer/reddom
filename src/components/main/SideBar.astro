@@ -3,9 +3,9 @@ import PicturesIcon from "@/assets/icons/pictures.svg";
 import BoxIcon from "@/assets/icons/box.svg";
 import WrenchIcon from "@/assets/icons/wrench.svg";
 import PickaxeIcon from "@/assets/icons/pickaxe.svg";
-import { db, Block } from "astro:db"
-
-const data = await db.select().from(Block);
+import ReferenceList from "@/components/sidebar/ReferenceList.astro";
+import List from "@/components/sidebar/List.astro";
+import { db, SidebarEntries, SidebarGroups, SidebarTabs } from "astro:db";
 
 const tabs = [
 	{
@@ -29,6 +29,8 @@ const tabs = [
 		icon: PicturesIcon
 	}
 ];
+
+
 ---
 
 <div class="sidebar cflex">
@@ -39,6 +41,10 @@ const tabs = [
 				<span>{tab.title}</span>
 			</li>
 		))}
+	</ul>
+	<ul class="list-wrapper">
+		<List id="start" entries={}/>
+		<ReferenceList />
 	</ul>
 </div>
 
@@ -52,6 +58,7 @@ const tabs = [
 		background-color: var(--bg);
 		border-top: 1px solid var(--bg-dark);
 		padding: var(--size-m);
+		gap: var(--size-l);
 	}
 
 	.tabs-wrapper {
@@ -59,6 +66,8 @@ const tabs = [
 		padding: var(--size-xs);
 		border-radius: calc(var(--br-soft) + var(--size-xs));
 		list-style-type: none;
+		background-color: var(--bg-dark);
+		gap: var(--size-2xs);
 	}
 
 	.tab-item {

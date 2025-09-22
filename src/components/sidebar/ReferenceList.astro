@@ -1,0 +1,94 @@
+---
+import { db, Blocks, Categories } from "astro:db";
+import ChevronIcon from "@/assets/icons/chevron-right.svg";
+
+const blocksDB = await db.select().from(Blocks);
+const categoriesDB = await db.select().from(Categories);
+---
+
+<ul id="__tab-reference" class="cflex">
+	{
+		categoriesDB.map((category) => (
+			<li>
+				<details open>
+					<summary class="rflex">
+						<span class="group-label">{category.Name}</span>
+						<ChevronIcon class="expand-arrow" />
+					</summary>
+					<ul class="sublist cflex">
+						{
+							blocksDB.filter((elem) => elem.CategoryID === category.ID).map((block) => (
+								<li>
+									<a href={"/reference/" + block.ID}>
+										<span>{block.Name}</span>
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</details>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	#__tab-reference {
+		list-style: none;
+		gap: var(--size-xs);
+	}
+
+	details {
+		padding: 0 var(--size-xs);
+	}
+
+	details summary {
+		list-style: none;
+		align-items: center;
+		justify-content: space-between;
+		cursor: pointer;
+		padding: var(--size-xs) 0;
+		user-select: none;
+	}
+
+	.group-label {
+		color: var(--text);
+		font-weight: 500;
+	}
+
+	.expand-arrow {
+		aspect-ratio: 1 / 1;
+		width: var(--size-m);
+		height: auto;
+		stroke: var(--text);
+		transition: all 250ms ease;
+	}
+
+	details:open .expand-arrow {
+		transform: rotateZ(90deg);
+	}
+
+	.sublist {
+		list-style: none;
+		border-left: 1px solid var(--border);
+		padding: var(--size-xs) var(--size-m);
+		gap: var(--size-s);
+	}
+
+	.sublist a {
+		width: 100%;
+		text-decoration: none;
+	}
+
+	.sublist span {
+		font-size: 0.875em;
+	}
+
+	.sublist li:hover span {
+		color: var(--highlight);
+	}
+
+	.sublist li {
+		/* padding: var(--size-xs) 0; */
+	}
+</style>

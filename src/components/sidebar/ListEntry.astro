@@ -1,0 +1,19 @@
+---
+type Props = {
+	isSublist: boolean;
+}
+
+const { isSublist } = Astro.props;
+---
+
+<li class="list-entry">
+	{isSublist ?
+	<details>
+		<summary></summary>
+		<ul></ul>
+	</details> :
+	<a href="">
+		
+	</a>
+	}
+</li>

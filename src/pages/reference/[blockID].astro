@@ -1,0 +1,25 @@
+---
+import type { GetStaticPaths } from "astro";
+import Main from "@/layouts/Main.astro";
+import { db, Blocks } from "astro:db";
+
+const blocksData = await db.select().from(Blocks);
+
+export const getStaticPaths = (() => {
+	return blocksData.map((block) => (
+		{ params: { blockID: block.NameID }}
+	));
+}) satisfies GetStaticPaths;
+
+const { blockID } = Astro.params;
+---
+
+<Main>
+	<p>
+		{blockID}
+	</p>
+</Main>
+
+<style>
+
+</style>

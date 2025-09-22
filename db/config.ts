@@ -1,26 +1,82 @@
 import { defineDb, defineTable, column } from 'astro:db';
 
-const Block = defineTable({
+const SidebarTabs = defineTable({
+	columns: {
+		// tab ID
+		ID: column.text({ primaryKey: true }),
+		// tab name
+		Name: column.text(),
+	}
+});
+
+const SidebarGroups = defineTable({
+	columns: {
+		// summary ID
+		ID: column.text({ primaryKey: true }),
+		// summary name
+		Name: column.text(),
+		// tab ID
+		TabID: column.text({ references: () => SidebarTabs.columns.ID }),
+	}
+});
+
+const SidebarEntries = defineTable({
+	columns: {
+		// entry ID
+		ID: column.text({ primaryKey: true }),
+		// entry name
+		Name: column.text(),
+		// parent summary
+		GroupID: column.text({ references: () => SidebarGroups.columns.ID }),
+	}
+});
+
+const Categories = defineTable({
+	columns: {
+		// category ID
+		ID: column.text({ primaryKey: true }),
+		// category name
+		Name: column.text(),
+	}
+});
+
+const Blocks = defineTable({
 	columns: {
 		// block ID
-		id_name: column.text({ primaryKey: true }),
+		ID: column.text({ primaryKey: true }),
 		// block name
-		name: column.text(),
-		// can be stacked to bundles of 16/64
-		is_stackable: column.boolean(),
-		// exact stack size if stackable
-		stack_size: column.number(),
+		Name: column.text(),
+		// stack size (1 / 16 / 64)
+		StackSize: column.number(),
 		// constant for how easy the block is destructable by explosions
-		blast_resistance: column.number(),
+		BlastResistance: column.number(),
 		// constant for how easy the block is breakable
-		hardness: column.number(),
-		// covers a whole block without see-through
-		is_transparent: column.boolean(),
-		// required tool for breaking
-		tool: column.text(),
+		Hardness: column.number(),
+		// false if the block fully covers a block
+		IsTransparent: column.boolean(),
+		// block category ID
+		CategoryID: column.text({ references: () => Categories.columns.ID }),
+		// true if the block can be broken faster with a certain tool
+		HasEfficientTool: column.boolean(),
+	}
+});
+
+const IntendedToolProperty = defineTable({
+	columns: {
+		// block ID
+		BlockID: column.text({ references: () => Blocks.columns.ID }),
+		// tool name
+		Tool: column.text(),
 	}
 });
 
 export default defineDb({
-	tables: { Block }
+	tables: {
+		Blocks,
+		Categories,
+		IntendedToolProperty,
+		SidebarTabs,
+		SidebarGroups,
+		SidebarEntries
+	}
 });

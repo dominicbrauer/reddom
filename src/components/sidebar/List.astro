@@ -1,0 +1,17 @@
+---
+import { db, SidebarEntries, SidebarGroups, SidebarTabs } from 'astro:db';
+
+type Props = {
+	id: string;
+}
+
+const { id } = Astro.props;
+
+const sidebarTabs = await db.select().from(SidebarTabs);
+const sidebarGroups = await db.select().from(SidebarGroups);
+const sidebarEntries = await db.select().from(SidebarEntries);
+---
+
+<ul class="sidebar-list" id={"__tab-" + id}>
+
+</ul>
