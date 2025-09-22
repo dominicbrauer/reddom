@@ -1,36 +1,5 @@
 import { defineDb, defineTable, column } from 'astro:db';
 
-const SidebarTabs = defineTable({
-	columns: {
-		// tab ID
-		ID: column.text({ primaryKey: true }),
-		// tab name
-		Name: column.text(),
-	}
-});
-
-const SidebarGroups = defineTable({
-	columns: {
-		// summary ID
-		ID: column.text({ primaryKey: true }),
-		// summary name
-		Name: column.text(),
-		// tab ID
-		TabID: column.text({ references: () => SidebarTabs.columns.ID }),
-	}
-});
-
-const SidebarEntries = defineTable({
-	columns: {
-		// entry ID
-		ID: column.text({ primaryKey: true }),
-		// entry name
-		Name: column.text(),
-		// parent summary
-		GroupID: column.text({ references: () => SidebarGroups.columns.ID }),
-	}
-});
-
 const Categories = defineTable({
 	columns: {
 		// category ID
@@ -74,9 +43,6 @@ export default defineDb({
 	tables: {
 		Blocks,
 		Categories,
-		IntendedToolProperty,
-		SidebarTabs,
-		SidebarGroups,
-		SidebarEntries
+		IntendedToolProperty
 	}
 });
