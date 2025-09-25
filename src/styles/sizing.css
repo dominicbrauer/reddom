@@ -26,7 +26,6 @@
 	--size-4xl: calc(var(--size-3xl) * var(--golden-ratio));
 
 	/* Unitless sizes for usage with `calc()` */
-
 	--size-s-unitless: calc(1 / var(--golden-ratio));
 	--size-xs-unitless: calc(var(--size-s-unitless) / var(--golden-ratio));
 	--size-2xs-unitless: calc(var(--size-xs-unitless) / var(--golden-ratio));
